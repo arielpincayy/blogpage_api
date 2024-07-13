@@ -3,11 +3,17 @@ from flask_cors import CORS
 import sqlite3
 from firebase_admin import credentials, auth, initialize_app
 from datetime import datetime
+from dotenv import load_dotenv
+import os
+
 
 app = Flask(__name__)
 CORS(app)
 
-cred = credentials.Certificate('myownnotesuwu-firebase-adminsdk-fdu80-a26f407557.json')
+load_dotenv()
+cred_path = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+
+cred = credentials.Certificate(cred_path)
 initialize_app(cred)
 
 
